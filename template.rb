@@ -88,7 +88,7 @@ end
 file 'Gemfile', <<-CODE
 source "http://rubygems.org"
 
-gem "rails", "3.0.0.beta4"
+gem "rails", "3.0.0"
 CODE
 
 unless options[:skip_activerecord]
@@ -101,8 +101,10 @@ end
 
 append_file 'Gemfile', <<-CODE
 
-group "development" do
+group "development", "test" do
   gem "unicorn"
+  gem "rspec", "~> 2.0.0.beta.20"
+  gem "rspec-rails", "~> 2.0.0.beta.20"
 end
 
 group "test" do
@@ -111,8 +113,6 @@ group "test" do
   gem "cucumber-rails", :git => "http://github.com/aslakhellesoy/cucumber-rails.git"
   gem "factory_girl_rails", "1.0", :require => nil
   gem "mocha"
-  gem "rspec", "~> 2.0.0.beta.17"
-  gem "rspec-rails", "~> 2.0.0.beta.17"
   gem "test-unit"  
 end
 CODE
