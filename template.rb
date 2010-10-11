@@ -21,7 +21,7 @@ file 'README.markdown', <<-EOL
 
     gem install bundler
     # TODO other setup commands here
-    
+
 ## Seed Data
 
 Login as ....  # TODO insert typical test accounts for QA / devs to login to app as
@@ -68,7 +68,7 @@ open("http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js") do 
   File.open("public/javascripts/jquery-ui-1.8.1.min.js", 'w') {|f| f.write(source.read) }
 end
 
-commit_message =<<EOC 
+commit_message =<<EOC
 Remove defaults; add preferred JS and CSS:
 
   - replace Protoype with jquery & jquery-ui minified versions
@@ -103,8 +103,8 @@ append_file 'Gemfile', <<-CODE
 
 group "development", "test" do
   gem "unicorn"
-  gem "rspec", "~> 2.0.0.beta.20"
-  gem "rspec-rails", "~> 2.0.0.beta.20"
+  gem "rspec", "~> 2.0.0"
+  gem "rspec-rails", "~> 2.0.0"
 end
 
 group "test" do
@@ -113,7 +113,7 @@ group "test" do
   gem "cucumber-rails", :git => "http://github.com/aslakhellesoy/cucumber-rails.git"
   gem "factory_girl_rails", "1.0", :require => nil
   gem "mocha"
-  gem "test-unit"  
+  gem "test-unit"
 end
 CODE
 
