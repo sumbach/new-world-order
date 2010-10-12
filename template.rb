@@ -117,6 +117,8 @@ group "test" do
 end
 CODE
 
+file '.rvmrc', 'rvm use ruby-1.9.2-p0'
+
 run "bundle install"
 git :add => "."
 git :commit => "-a -m  'Initial gems setup'"
