@@ -88,7 +88,7 @@ end
 file 'Gemfile', <<-CODE
 source "http://rubygems.org"
 
-gem "rails", "3.0.0"
+gem "rails", "3.0.1"
 CODE
 
 unless options[:skip_activerecord]
@@ -103,8 +103,8 @@ append_file 'Gemfile', <<-CODE
 
 group "development", "test" do
   gem "unicorn"
-  gem "rspec", "~> 2.0.0"
-  gem "rspec-rails", "~> 2.0.0"
+  gem "rspec", "~> 2.0"
+  gem "rspec-rails", "~> 2.0"
 end
 
 group "test" do
