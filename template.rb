@@ -88,16 +88,10 @@ end
 file 'Gemfile', <<-CODE
 source "http://rubygems.org"
 
-gem "rails", "3.0.3"
+gem "rails", "3.0.4"
 CODE
 
-unless options[:skip_activerecord]
-  if require_for_database
-    gem gem_for_database, :require => require_for_database
-  else
-    gem gem_for_database
-  end
-end
+gem gem_for_database unless options[:skip_activerecord]
 
 append_file 'Gemfile', <<-CODE
 
