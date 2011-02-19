@@ -110,7 +110,7 @@ end
 group "test" do
   gem "database_cleaner"
   gem "capybara"
-  gem "cucumber-rails", :git => "http://github.com/aslakhellesoy/cucumber-rails.git"
+  gem "cucumber-rails", "0.3.2"
   gem "factory_girl_rails", "1.0", :require => nil
   gem "mocha"
   gem "test-unit"
