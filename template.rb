@@ -140,7 +140,7 @@ inject_into_file "spec/spec_helper.rb", rspec_config, :after => /Rspec.configure
 git :add => "."
 git :commit => "-a -m 'Rspec generated'"
 
-generate "cucumber:skeleton", "--rspec", "--capybara"
+generate "cucumber:install", "--rspec", "--capybara"
 git :add => "."
 git :commit => "-a -m 'Cucumber generated'"
 
