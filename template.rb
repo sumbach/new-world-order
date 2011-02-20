@@ -1,6 +1,7 @@
 git :init
 append_file '.gitignore', "vendor/bundler_gems\nconfig/database.yml\n"
-run "cp config/database.yml config/database.example.yml"
+run "mv config/database.yml config/database.example.yml"
+run "ln -nfs database.example.yml config/database.yml"
 git :add => "."
 git :commit => "-a -m 'Initial commit'"
 
@@ -88,16 +89,10 @@ end
 file 'Gemfile', <<-CODE
 source "http://rubygems.org"
 
-gem "rails", "3.0.3"
+gem "rails", "3.0.4"
 CODE
 
-unless options[:skip_activerecord]
-  if require_for_database
-    gem gem_for_database, :require => require_for_database
-  else
-    gem gem_for_database
-  end
-end
+gem gem_for_database unless options[:skip_activerecord]
 
 append_file 'Gemfile', <<-CODE
 
@@ -110,7 +105,7 @@ end
 group "test" do
   gem "database_cleaner"
   gem "capybara"
-  gem "cucumber-rails", :git => "http://github.com/aslakhellesoy/cucumber-rails.git"
+  gem "cucumber-rails", "0.3.2"
   gem "factory_girl_rails", "1.0", :require => nil
   gem "mocha"
   gem "test-unit"
@@ -140,7 +135,7 @@ inject_into_file "spec/spec_helper.rb", rspec_config, :after => /Rspec.configure
 git :add => "."
 git :commit => "-a -m 'Rspec generated'"
 
-generate "cucumber:skeleton", "--rspec", "--capybara"
+generate "cucumber:install", "--rspec", "--capybara"
 git :add => "."
 git :commit => "-a -m 'Cucumber generated'"
 
