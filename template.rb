@@ -1,3 +1,10 @@
+RVM_RUBY = "ruby-1.9.2"
+RVM_GEMSET = app_name
+
+def rvm_run(command, config = {})
+  run "rvm #{RVM_RUBY}@#{RVM_GEMSET} exec #{command}", config
+end
+
 git :init
 append_file '.gitignore', "vendor/bundler_gems\nconfig/database.yml\n"
 run "mv config/database.yml config/database.example.yml"
@@ -112,13 +119,15 @@ group "test" do
 end
 CODE
 
-file '.rvmrc', 'rvm use ruby-1.9.2-p0'
+file ".rvmrc", "rvm use #{RVM_RUBY}@#{RVM_GEMSET}\n"
 
-run "bundle install"
+run "rvm #{RVM_RUBY} gemset create #{RVM_GEMSET}"
+rvm_run "gem install bundler"
+rvm_run "bundle install"
 git :add => "."
 git :commit => "-a -m  'Initial gems setup'"
 
-generate "rspec:install"
+rvm_run "./script/rails generate rspec:install"
 gsub_file 'spec/spec_helper.rb', "# config.mock_with :mocha", "config.mock_with :mocha"
 gsub_file 'spec/spec_helper.rb', "config.mock_with :rspec", "# config.mock_with :rspec"
 rspec_config =<<-CODE
@@ -135,10 +144,10 @@ inject_into_file "spec/spec_helper.rb", rspec_config, :after => /Rspec.configure
 git :add => "."
 git :commit => "-a -m 'Rspec generated'"
 
-generate "cucumber:install", "--rspec", "--capybara"
+rvm_run "./script/rails generate cucumber:install --rspec --capybara"
 git :add => "."
 git :commit => "-a -m 'Cucumber generated'"
 
-rake "db:create:all db:migrate"
+rvm_run "rake db:create:all db:migrate"
 
 say "All done!  Thanks for installing using the NEW WORLD ORDER"
