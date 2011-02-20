@@ -1,6 +1,7 @@
 git :init
 append_file '.gitignore', "vendor/bundler_gems\nconfig/database.yml\n"
-run "cp config/database.yml config/database.example.yml"
+run "mv config/database.yml config/database.example.yml"
+run "ln -nfs database.example.yml config/database.yml"
 git :add => "."
 git :commit => "-a -m 'Initial commit'"
 
