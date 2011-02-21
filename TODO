@@ -1,8 +1,23 @@
 TODO
 =================
+* sample cucumber test working
 * wire up watchr for re-running specs
-* CSS framework -- http://960.gs
+* HAML
+** gem
+** config generator
+** initializer
+** application.html.haml
+* sass
+** gem
+** watchr
+* HTML 5 boilerplate: http://csswizardry.com/2011/01/the-real-html5-boilerplate/
+** application.html.haml
+** reset sess partial (see fitsistant)
+* compass framework
+** CSS framework -- http://960.gs
+* default rake task
 
 IDEAS
 =================
+* http://blog.madebydna.com/all/code/2010/10/11/cooking-up-a-custom-rails3-template.html
 * some sort of optional auth system (Devise? Clearance?)
