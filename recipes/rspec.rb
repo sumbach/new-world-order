@@ -30,6 +30,9 @@ RSpec.configure do |config|
   config.color_enabled = ENV.keys.none? { |k| %w{TM_MODE EMACS VIM}.include? k }
 end
 CODE
+file "spec/support/factory_girl.rb", <<-CODE
+require 'factory_girl_rails'
+CODE
 
 git :add => "."
 git :commit => "-a -m 'Replace Test::Unit with Rspec'"
